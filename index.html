@@ -602,18 +602,18 @@
 
         // Firebase Configuration (Replace with your config)
         const firebaseConfig = {
-  apiKey: "AIzaSyC3DciFvi82ORH6fKuiN8z0ZV81DJsL2C4",
-  authDomain: "aromaticcaffe-18e30.firebaseapp.com",
-  projectId: "aromaticcaffe-18e30",
-  storageBucket: "aromaticcaffe-18e30.firebasestorage.app",
-  messagingSenderId: "602499503034",
-  appId: "1:602499503034:web:a3b0c63fb3d8e578dc0383"
-};
+            apiKey: "YOUR_API_KEY",
+            authDomain: "YOUR_AUTH_DOMAIN",
+            projectId: "YOUR_PROJECT_ID",
+            storageBucket: "YOUR_STORAGE_BUCKET",
+            messagingSenderId: "YOUR_MESSAGING_SENDER_ID",
+            appId: "YOUR_APP_ID"
+        };
 
         // Initialize Firebase (uncomment when you have config)
-         firebase.initializeApp(firebaseConfig);
-         const db = firebase.firestore();
-         const auth = firebase.auth();
+        // firebase.initializeApp(firebaseConfig);
+        // const db = firebase.firestore();
+        // const auth = firebase.auth();
 
         // Initial menu data
         const initialCategories = {
@@ -964,19 +964,27 @@
             const [error, setError] = useState('');
             const [loading, setLoading] = useState(false);
 
-            const handleSubmit = (e) => {
+            const handleSubmit = async (e) => {
                 e.preventDefault();
                 setLoading(true);
                 setError('');
 
-                // Simple demo login (replace with Firebase auth)
-                if (email === 'admin@aromaticcaffe.rs' && password === 'admin123') {
-                    setTimeout(() => {
-                        onLogin();
-                        setLoading(false);
-                    }, 500);
-                } else {
-                    setError('Pogrešan email ili lozinka');
+                try {
+                    // Firebase Authentication
+                    await auth.signInWithEmailAndPassword(email, password);
+                    onLogin();
+                    setLoading(false);
+                } catch (error) {
+                    console.error('Login error:', error);
+                    if (error.code === 'auth/user-not-found') {
+                        setError('Korisnik ne postoji');
+                    } else if (error.code === 'auth/wrong-password') {
+                        setError('Pogrešna lozinka');
+                    } else if (error.code === 'auth/invalid-email') {
+                        setError('Neispravan email format');
+                    } else {
+                        setError('Greška pri prijavljivanju. Pokušajte ponovo.');
+                    }
                     setLoading(false);
                 }
             };
@@ -1010,9 +1018,6 @@
                             {loading ? 'Prijava...' : 'Prijavi se'}
                         </button>
                     </form>
-                    <p style={{marginTop: '20px', textAlign: 'center', color: '#666', fontSize: '14px'}}>
-                        Demo: admin@aromaticcaffe.rs / admin123
-                    </p>
                 </div>
             );
         }
