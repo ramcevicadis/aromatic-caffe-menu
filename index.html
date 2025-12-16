@@ -601,14 +601,14 @@
         const { useState, useEffect } = React;
 
         // Firebase Configuration (Replace with your config)
-       const firebaseConfig = {
-  apiKey: "AIzaSyC3DciFvi82ORH6fKuiN8z0ZV81DJsL2C4",
-  authDomain: "aromaticcaffe-18e30.firebaseapp.com",
-  projectId: "aromaticcaffe-18e30",
-  storageBucket: "aromaticcaffe-18e30.firebasestorage.app",
-  messagingSenderId: "602499503034",
-  appId: "1:602499503034:web:a3b0c63fb3d8e578dc0383"
-};
+        const firebaseConfig = {
+            apiKey: "AIzaSyC3DciFvi82ORH6fKuiN8z0ZV81DJsL2C4",
+            authDomain: "aromaticcaffe-18e30.firebaseapp.com",
+            projectId: "aromaticcaffe-18e30",
+            storageBucket: "aromaticcaffe-18e30.firebasestorage.app",
+            messagingSenderId: "602499503034",
+            appId: "1:602499503034:web:a3b0c63fb3d8e578dc0383"
+        };
 
         // Initialize Firebase (uncomment when you have config)
          firebase.initializeApp(firebaseConfig);
@@ -758,6 +758,51 @@
             const [isAdmin, setIsAdmin] = useState(false);
             const [categories, setCategories] = useState(initialCategories);
             const [items, setItems] = useState(initialItems);
+            const [loading, setLoading] = useState(true);
+
+            // Load items from Firestore on mount
+            useEffect(() => {
+                const loadItems = async () => {
+                    try {
+                        const snapshot = await db.collection('items').get();
+                        
+                        if (!snapshot.empty) {
+                            const loadedItems = {};
+                            
+                            // Initialize all categories
+                            Object.keys(initialItems).forEach(cat => {
+                                loadedItems[cat] = [];
+                            });
+                            
+                            // Populate with Firestore data
+                            snapshot.forEach(doc => {
+                                const data = doc.data();
+                                const categoryId = data.categoryId;
+                                
+                                if (loadedItems[categoryId]) {
+                                    loadedItems[categoryId].push({
+                                        id: data.id,
+                                        name: {
+                                            sr: data.name_sr,
+                                            en: data.name_en
+                                        },
+                                        price: data.price
+                                    });
+                                }
+                            });
+                            
+                            setItems(loadedItems);
+                        }
+                    } catch (error) {
+                        console.error('Error loading items:', error);
+                        // Keep initial items if Firestore fails
+                    } finally {
+                        setLoading(false);
+                    }
+                };
+                
+                loadItems();
+            }, []);
 
             const t = translations[language];
             const currentCategories = categories[language];
@@ -1028,11 +1073,22 @@
             const [showAddModal, setShowAddModal] = useState(false);
             const [newItem, setNewItem] = useState({ name: { sr: '', en: '' }, price: 0 });
 
-            const handleDeleteItem = (itemId) => {
+            const handleDeleteItem = async (itemId) => {
                 if (confirm('Da li ste sigurni da želite obrisati ovaj artikal?')) {
-                    const newItems = { ...items };
-                    newItems[selectedCategory] = newItems[selectedCategory].filter(item => item.id !== itemId);
-                    onUpdateItems(newItems);
+                    try {
+                        // Delete from Firestore
+                        await db.collection('items').doc(`${selectedCategory}_${itemId}`).delete();
+                        
+                        // Update local state
+                        const newItems = { ...items };
+                        newItems[selectedCategory] = newItems[selectedCategory].filter(item => item.id !== itemId);
+                        onUpdateItems(newItems);
+                        
+                        alert('Artikal obrisan!');
+                    } catch (error) {
+                        console.error('Error deleting item:', error);
+                        alert('Greška pri brisanju artikla.');
+                    }
                 }
             };
 
@@ -1040,32 +1096,68 @@
                 setEditingItem(item);
             };
 
-            const handleSaveEdit = () => {
-                const newItems = { ...items };
-                const index = newItems[selectedCategory].findIndex(item => item.id === editingItem.id);
-                newItems[selectedCategory][index] = editingItem;
-                onUpdateItems(newItems);
-                setEditingItem(null);
+            const handleSaveEdit = async () => {
+                try {
+                    // Save to Firestore
+                    await db.collection('items').doc(`${selectedCategory}_${editingItem.id}`).set({
+                        categoryId: selectedCategory,
+                        name_sr: editingItem.name.sr,
+                        name_en: editingItem.name.en,
+                        price: parseInt(editingItem.price),
+                        id: editingItem.id
+                    });
+                    
+                    // Update local state
+                    const newItems = { ...items };
+                    const index = newItems[selectedCategory].findIndex(item => item.id === editingItem.id);
+                    newItems[selectedCategory][index] = editingItem;
+                    onUpdateItems(newItems);
+                    setEditingItem(null);
+                    
+                    alert('Izmene sačuvane!');
+                } catch (error) {
+                    console.error('Error saving item:', error);
+                    alert('Greška pri čuvanju izmena.');
+                }
             };
 
-            const handleAddItem = () => {
+            const handleAddItem = async () => {
                 if (!newItem.name.sr || !newItem.name.en || !newItem.price) {
                     alert('Molimo popunite sva polja!');
                     return;
                 }
                 
-                const newItems = { ...items };
-                const newId = Math.max(...newItems[selectedCategory].map(item => item.id), 0) + 1;
-                
-                newItems[selectedCategory].push({
-                    id: newId,
-                    name: { sr: newItem.name.sr, en: newItem.name.en },
-                    price: parseInt(newItem.price)
-                });
-                
-                onUpdateItems(newItems);
-                setNewItem({ name: { sr: '', en: '' }, price: 0 });
-                setShowAddModal(false);
+                try {
+                    const newItems = { ...items };
+                    const newId = Math.max(...newItems[selectedCategory].map(item => item.id), 0) + 1;
+                    
+                    const itemData = {
+                        id: newId,
+                        categoryId: selectedCategory,
+                        name_sr: newItem.name.sr,
+                        name_en: newItem.name.en,
+                        price: parseInt(newItem.price)
+                    };
+                    
+                    // Save to Firestore
+                    await db.collection('items').doc(`${selectedCategory}_${newId}`).set(itemData);
+                    
+                    // Update local state
+                    newItems[selectedCategory].push({
+                        id: newId,
+                        name: { sr: newItem.name.sr, en: newItem.name.en },
+                        price: parseInt(newItem.price)
+                    });
+                    
+                    onUpdateItems(newItems);
+                    setNewItem({ name: { sr: '', en: '' }, price: 0 });
+                    setShowAddModal(false);
+                    
+                    alert('Artikal dodat!');
+                } catch (error) {
+                    console.error('Error adding item:', error);
+                    alert('Greška pri dodavanju artikla.');
+                }
             };
 
             return (
