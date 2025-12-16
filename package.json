@@ -1,0 +1,19 @@
+{
+  "name": "aromatic-caffe-menu",
+  "version": "1.0.0",
+  "description": "Digital menu system for Aromatic Caffe with admin panel",
+  "main": "index.html",
+  "scripts": {
+    "start": "npx serve .",
+    "deploy": "vercel --prod"
+  },
+  "keywords": [
+    "digital-menu",
+    "restaurant",
+    "qr-menu",
+    "nfc",
+    "firebase"
+  ],
+  "author": "Aromatic Caffe",
+  "license": "MIT"
+}

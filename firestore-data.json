@@ -1,0 +1,333 @@
+{
+  "collections": {
+    "categories": {
+      "topli-napici": {
+        "id": "topli-napici",
+        "name_sr": "Topli Napici",
+        "name_en": "Hot Drinks",
+        "icon": "coffee.png",
+        "order": 1
+      },
+      "gazirani-sokovi": {
+        "id": "gazirani-sokovi",
+        "name_sr": "Gazirani Sokovi",
+        "name_en": "Carbonated Juices",
+        "icon": "gazirana_pica.png",
+        "order": 2
+      },
+      "negazirani-sokovi": {
+        "id": "negazirani-sokovi",
+        "name_sr": "Negazirani Sokovi",
+        "name_en": "Non-Carbonated Juices",
+        "icon": "negazirani.png",
+        "order": 3
+      },
+      "cedjeni-sokovi": {
+        "id": "cedjeni-sokovi",
+        "name_sr": "Cedjeni Sokovi",
+        "name_en": "Fresh Juices",
+        "icon": "cedjeni.png",
+        "order": 4
+      },
+      "energetska-pica": {
+        "id": "energetska-pica",
+        "name_sr": "Energetska Pića",
+        "name_en": "Energy Drinks",
+        "icon": "energetska.png",
+        "order": 5
+      },
+      "negazirane-vode": {
+        "id": "negazirane-vode",
+        "name_sr": "Negazirane Vode",
+        "name_en": "Still Water",
+        "icon": "negazirane_vode1.png",
+        "order": 6
+      },
+      "gazirane-vode": {
+        "id": "gazirane-vode",
+        "name_sr": "Gazirane Vode",
+        "name_en": "Sparkling Water",
+        "icon": "gazirane_vode2.png",
+        "order": 7
+      },
+      "kolaci": {
+        "id": "kolaci",
+        "name_sr": "Kolači",
+        "name_en": "Cakes",
+        "icon": "kolaci1.png",
+        "order": 8
+      },
+      "ostalo": {
+        "id": "ostalo",
+        "name_sr": "Ostalo",
+        "name_en": "Other",
+        "icon": "ostal.png",
+        "order": 9
+      }
+    },
+    "items": {
+      "item_1": {
+        "id": "item_1",
+        "categoryId": "topli-napici",
+        "name_sr": "Espresso",
+        "name_en": "Espresso",
+        "price": 150,
+        "available": true
+      },
+      "item_2": {
+        "id": "item_2",
+        "categoryId": "topli-napici",
+        "name_sr": "Cappuccino",
+        "name_en": "Cappuccino",
+        "price": 200,
+        "available": true
+      },
+      "item_3": {
+        "id": "item_3",
+        "categoryId": "topli-napici",
+        "name_sr": "Latte",
+        "name_en": "Latte",
+        "price": 220,
+        "available": true
+      },
+      "item_4": {
+        "id": "item_4",
+        "categoryId": "topli-napici",
+        "name_sr": "Nes Kafa",
+        "name_en": "Instant Coffee",
+        "price": 220,
+        "available": true
+      },
+      "item_5": {
+        "id": "item_5",
+        "categoryId": "topli-napici",
+        "name_sr": "Turska Kafa",
+        "name_en": "Turkish Coffee",
+        "price": 120,
+        "available": true
+      },
+      "item_6": {
+        "id": "item_6",
+        "categoryId": "topli-napici",
+        "name_sr": "Čaj (Razni)",
+        "name_en": "Tea (Various)",
+        "price": 200,
+        "available": true
+      },
+      "item_7": {
+        "id": "item_7",
+        "categoryId": "topli-napici",
+        "name_sr": "Turski čaj",
+        "name_en": "Turkish Tea",
+        "price": 130,
+        "available": true
+      },
+      "item_8": {
+        "id": "item_8",
+        "categoryId": "topli-napici",
+        "name_sr": "Topla Čokolada",
+        "name_en": "Hot Chocolate",
+        "price": 200,
+        "available": true
+      },
+      "item_9": {
+        "id": "item_9",
+        "categoryId": "gazirani-sokovi",
+        "name_sr": "Coca-Cola",
+        "name_en": "Coca-Cola",
+        "price": 220,
+        "available": true
+      },
+      "item_10": {
+        "id": "item_10",
+        "categoryId": "gazirani-sokovi",
+        "name_sr": "Fanta",
+        "name_en": "Fanta",
+        "price": 220,
+        "available": true
+      },
+      "item_11": {
+        "id": "item_11",
+        "categoryId": "gazirani-sokovi",
+        "name_sr": "Sprite",
+        "name_en": "Sprite",
+        "price": 220,
+        "available": true
+      },
+      "item_12": {
+        "id": "item_12",
+        "categoryId": "gazirani-sokovi",
+        "name_sr": "Schweppes",
+        "name_en": "Schweppes",
+        "price": 220,
+        "available": true
+      },
+      "item_13": {
+        "id": "item_13",
+        "categoryId": "gazirani-sokovi",
+        "name_sr": "Remix",
+        "name_en": "Remix",
+        "price": 250,
+        "available": true
+      },
+      "item_14": {
+        "id": "item_14",
+        "categoryId": "gazirani-sokovi",
+        "name_sr": "Cocta",
+        "name_en": "Cocta",
+        "price": 250,
+        "available": true
+      },
+      "item_15": {
+        "id": "item_15",
+        "categoryId": "gazirani-sokovi",
+        "name_sr": "Limona",
+        "name_en": "Lemon",
+        "price": 250,
+        "available": true
+      },
+      "item_16": {
+        "id": "item_16",
+        "categoryId": "negazirani-sokovi",
+        "name_sr": "Gusto",
+        "name_en": "Gusto",
+        "price": 250,
+        "available": true
+      },
+      "item_17": {
+        "id": "item_17",
+        "categoryId": "negazirani-sokovi",
+        "name_sr": "Sola",
+        "name_en": "Sola",
+        "price": 250,
+        "available": true
+      },
+      "item_18": {
+        "id": "item_18",
+        "categoryId": "negazirani-sokovi",
+        "name_sr": "Cedevita",
+        "name_en": "Cedevita",
+        "price": 150,
+        "available": true
+      },
+      "item_19": {
+        "id": "item_19",
+        "categoryId": "negazirani-sokovi",
+        "name_sr": "Orangina",
+        "name_en": "Orangina",
+        "price": 250,
+        "available": true
+      },
+      "item_20": {
+        "id": "item_20",
+        "categoryId": "negazirani-sokovi",
+        "name_sr": "Campy",
+        "name_en": "Campy",
+        "price": 250,
+        "available": true
+      },
+      "item_21": {
+        "id": "item_21",
+        "categoryId": "cedjeni-sokovi",
+        "name_sr": "Ceđena Pomorandža",
+        "name_en": "Fresh Orange",
+        "price": 300,
+        "available": true
+      },
+      "item_22": {
+        "id": "item_22",
+        "categoryId": "cedjeni-sokovi",
+        "name_sr": "Ceđeni Mix",
+        "name_en": "Fresh Mix",
+        "price": 350,
+        "available": true
+      },
+      "item_23": {
+        "id": "item_23",
+        "categoryId": "cedjeni-sokovi",
+        "name_sr": "Limunada",
+        "name_en": "Lemonade",
+        "price": 200,
+        "available": true
+      },
+      "item_24": {
+        "id": "item_24",
+        "categoryId": "cedjeni-sokovi",
+        "name_sr": "Malinada",
+        "name_en": "Raspberry Drink",
+        "price": 220,
+        "available": true
+      },
+      "item_25": {
+        "id": "item_25",
+        "categoryId": "energetska-pica",
+        "name_sr": "Ultra",
+        "name_en": "Ultra",
+        "price": 250,
+        "available": true
+      },
+      "item_26": {
+        "id": "item_26",
+        "categoryId": "energetska-pica",
+        "name_sr": "Guarana",
+        "name_en": "Guarana",
+        "price": 250,
+        "available": true
+      },
+      "item_27": {
+        "id": "item_27",
+        "categoryId": "negazirane-vode",
+        "name_sr": "Rosa",
+        "name_en": "Rosa",
+        "price": 150,
+        "available": true
+      },
+      "item_28": {
+        "id": "item_28",
+        "categoryId": "gazirane-vode",
+        "name_sr": "Kisela Voda",
+        "name_en": "Sparkling Water",
+        "price": 150,
+        "available": true
+      },
+      "item_29": {
+        "id": "item_29",
+        "categoryId": "gazirane-vode",
+        "name_sr": "Kisela Sa Ukusom",
+        "name_en": "Flavored Sparkling",
+        "price": 220,
+        "available": true
+      },
+      "item_30": {
+        "id": "item_30",
+        "categoryId": "kolaci",
+        "name_sr": "Čokoladna Torta",
+        "name_en": "Chocolate Cake",
+        "price": 400,
+        "available": true
+      },
+      "item_31": {
+        "id": "item_31",
+        "categoryId": "kolaci",
+        "name_sr": "Voćna Torta",
+        "name_en": "Fruit Cake",
+        "price": 400,
+        "available": true
+      }
+    },
+    "settings": {
+      "wifi": {
+        "id": "wifi",
+        "network_name": "aromaticcaffe",
+        "password": "aromaticcaffe2025"
+      },
+      "info": {
+        "id": "info",
+        "title_sr": "Amir-Agin Han",
+        "title_en": "Amir-Agin Han",
+        "description_sr": "Objekat je pod zaštitom države i predstavlja spomenik kulture od velikog značaja. Smarta se da han postoji još iz XVII veka, ali o vremenu nastanka nema čvrstih podataka.",
+        "description_en": "The building is under state protection and represents a cultural monument of great importance. It is believed that the han has existed since the 17th century."
+      }
+    }
+  }
+}
