@@ -611,9 +611,9 @@
         };
 
         // Initialize Firebase (uncomment when you have config)
-         firebase.initializeApp(firebaseConfig);
-         const db = firebase.firestore();
-         const auth = firebase.auth();
+        // firebase.initializeApp(firebaseConfig);
+        // const db = firebase.firestore();
+        // const auth = firebase.auth();
 
         // Initial menu data
         const initialCategories = {
@@ -722,7 +722,7 @@
                 allergensNote: 'Molimo goste sa alergenima ili intolerancijama da se obrate osoblju pre poručivanja.',
                 wifi: 'WiFi',
                 wifiNetwork: 'Naziv Mreže:',
-                wifiPassword: 'Password:',
+                wifiPassword: 'Šifra:',
                 scanQR: 'SCAN ME',
                 about: 'O Nama',
                 aboutTitle: 'Amir-Agin Han',
@@ -974,11 +974,11 @@
                                 <img src="images/wifi_icon.png" alt="WiFi" className="wifi-icon-large" />
                                 <div className="wifi-info">
                                     <div className="wifi-label">{t.wifiNetwork}</div>
-                                    <div className="wifi-value">aromaticcaffe</div>
+                                    <div className="wifi-value">next@AROMATICCAFFE_5G</div>
                                 </div>
                                 <div className="wifi-info">
                                     <div className="wifi-label">{t.wifiPassword}</div>
-                                    <div className="wifi-value">aromatic2025</div>
+                                    <div className="wifi-value">aromaticcaffe25</div>
                                 </div>
                                 <div className="qr-code">
                                     <img src="images/wifi_qr.png" alt="WiFi QR Code" style={{width: '100%', height: '100%', objectFit: 'contain'}} />
