@@ -611,9 +611,9 @@
         };
 
         // Initialize Firebase (uncomment when you have config)
-         firebase.initializeApp(firebaseConfig);
-         const db = firebase.firestore();
-         const auth = firebase.auth();
+        // firebase.initializeApp(firebaseConfig);
+        // const db = firebase.firestore();
+        // const auth = firebase.auth();
 
         // Initial menu data
         const initialCategories = {
@@ -716,6 +716,7 @@
         const translations = {
             sr: {
                 menu: 'MENI',
+                history: 'ISTORIJA',
                 allergens: 'Alergeni',
                 allergensTitle: 'Alergeni',
                 allergensText: 'Proizvodi koji se služe mogu sadržati ili imati tragove sledećih alergena:',
@@ -732,6 +733,7 @@
             },
             en: {
                 menu: 'MENU',
+                history: 'HISTORY',
                 allergens: 'Allergens',
                 allergensTitle: 'Allergens',
                 allergensText: 'Products served may contain or have traces of the following allergens:',
@@ -841,6 +843,10 @@
                                 <button className="menu-button-home" onClick={() => setScreen('categories')}>
                                     <span>{t.menu}</span>
                                     <img src="images/coffee.png" alt="Menu" />
+                                </button>
+                                <button className="menu-button-home" onClick={() => window.open('https://han.aromaticcaffe.rs', '_blank')}>
+                                    <span>{t.history}</span>
+                                    <span style={{fontSize: '40px'}}>🏛️</span>
                                 </button>
                                 <div className="language-selector">
                                     <button 
