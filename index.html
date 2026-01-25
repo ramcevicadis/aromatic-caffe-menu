@@ -127,6 +127,39 @@
             max-width: 320px;
         }
 
+        .history-button-home {
+            background: transparent;
+            border: 1px solid #e0e0e0;
+            border-radius: 12px;
+            padding: 12px 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            cursor: pointer;
+            transition: all 0.2s;
+            margin: 10px auto 20px;
+            position: relative;
+            z-index: 1;
+            width: 60%;
+            max-width: 200px;
+        }
+
+        .history-button-home:active {
+            transform: scale(0.98);
+        }
+
+        .history-button-home span {
+            font-size: 14px;
+            font-weight: 500;
+            color: #666;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+        }
+
+        .history-button-home .icon {
+            font-size: 18px;
+        }
+
         .menu-button-home:active {
             transform: scale(0.98);
         }
@@ -611,9 +644,9 @@
         };
 
         // Initialize Firebase (uncomment when you have config)
-         firebase.initializeApp(firebaseConfig);
-         const db = firebase.firestore();
-         const auth = firebase.auth();
+        // firebase.initializeApp(firebaseConfig);
+        // const db = firebase.firestore();
+        // const auth = firebase.auth();
 
         // Initial menu data
         const initialCategories = {
@@ -716,6 +749,7 @@
         const translations = {
             sr: {
                 menu: 'MENI',
+                history: 'ISTORIJA',
                 allergens: 'Alergeni',
                 allergensTitle: 'Alergeni',
                 allergensText: 'Proizvodi koji se služe mogu sadržati ili imati tragove sledećih alergena:',
@@ -732,6 +766,7 @@
             },
             en: {
                 menu: 'MENU',
+                history: 'HISTORY',
                 allergens: 'Allergens',
                 allergensTitle: 'Allergens',
                 allergensText: 'Products served may contain or have traces of the following allergens:',
@@ -841,6 +876,10 @@
                                 <button className="menu-button-home" onClick={() => setScreen('categories')}>
                                     <span>{t.menu}</span>
                                     <img src="images/coffee.png" alt="Menu" />
+                                </button>
+                                <button className="history-button-home" onClick={() => window.open('https://han.aromaticcaffe.rs', '_blank')}>
+                                    <span className="icon">🏛️</span>
+                                    <span>{t.history}</span>
                                 </button>
                                 <div className="language-selector">
                                     <button 
